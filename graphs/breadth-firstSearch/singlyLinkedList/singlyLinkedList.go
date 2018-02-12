@@ -2,57 +2,57 @@ package singlyLinkedList
 
 import "fmt"
 
-type Node struct {
-	next *Node
-	key int
+type node struct {
+	Next *node
+	Key int
 }
 
 type List struct{
-	head *Node
+	Head *node
 }
 
 func (L *List) Insert(key int){
-	node:= &Node{
-		next:L.head,
-		key:key,
+	node:= &node{
+		Next:L.Head,
+		Key:key,
 	}
-	L.head=node
+	L.Head=node
 }
 
-func (L *List) InsertArray(keys []int){
-	for _,k := range keys{
+func (L *List) InsertArray(Keys []int){
+	for _,k := range Keys{
 		L.Insert(k)
 	}
 }
 
-func (L *List) Search(key int) *Node{
-	x:=L.head
-	for ;(x!=nil)&&(x.key!=key);{
-		x=x.next
+func (L *List) Search(key int) *node{
+	x:=L.Head
+	for ;(x!=nil)&&(x.Key!=key);{
+		x=x.Next
 	}
 	return x
 }
 
 func (L* List) Delete(key int){
-	if L.head.key==key {
-		L.head=L.head.next
+	if L.Head.Key==key {
+		L.Head=L.Head.Next
 	}
-	x:=L.head
-	for ;x.next!=nil;{
-		if x.next.key==key{
-			x.next=x.next.next
+	x:=L.Head
+	for ;x.Next!=nil;{
+		if x.Next.Key==key{
+			x.Next=x.Next.Next
 			return
 		}
-		x=x.next
+		x=x.Next
 	}
 }
 
 func (L* List) Display(){
-	x:=L.head
+	x:=L.Head
 	for ;x!=nil;{
-		fmt.Print(x.key)
+		fmt.Print(x.Key)
 		fmt.Print("->")
-		x=x.next
+		x=x.Next
 	}
 	fmt.Println()
 }

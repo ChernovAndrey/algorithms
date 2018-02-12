@@ -1,17 +1,39 @@
 package graphs
 
-import "algorithms/graphs/breadth-firstSearch/singlyLinkedList"
+import (
+	"algorithms/graphs/breadth-firstSearch/singlyLinkedList"
+	"fmt"
+)
+
+const (
+	Gray="gray"
+	White="white"
+	Black="black"
+)
 
 type Graph struct{
-	lists []singlyLinkedList.List
+	Nodes []Node
 }
 
-func (G *Graph) InsertList(L singlyLinkedList.List){
-	G.lists=append(G.lists,L)
+type Node struct{
+	Nvertex int //номер вершины,
+	Color string
+	List singlyLinkedList.List
+	D int//расстояние до исходной вершины
+	Parent int
+}
+
+func (G *Graph) InsertNode(Nvertex int,List singlyLinkedList.List){
+	G.Nodes=append(G.Nodes,Node{
+		Nvertex:Nvertex,
+		List:List,
+	})
 }
 func (G *Graph) Display(){
-	for _,l := range G.lists{
-		l.Display()
+	for _,node := range G.Nodes{
+		fmt.Println("Vertex=",node.Nvertex)
+		node.List.Display()
 	}
 }
+
 
